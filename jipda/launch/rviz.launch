@@ -1,0 +1,13 @@
+<launch>
+    <node pkg="jipda" type="jipda_node" name="jipda_node" output="screen">
+        
+        <!-- General parameters -->
+        <param name="subs_topic" type="string" value="lrrObjects" />
+        <param name="marker_pub_topic" type="string" value="meas_markers" />
+        <param name="rate" type="int" value="100" />
+        <param name="draw" type="bool" value="true" />
+        
+    </node>
+     <!-- args="-d $(find package_name)/rviz/markers.rviz" -->
+    <node type="rviz" name="rviz" pkg="rviz"  />
+</launch>
