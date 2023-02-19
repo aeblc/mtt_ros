@@ -3,11 +3,18 @@
 MeasurementSet::MeasurementSet(const std_msgs::Float32MultiArrayConstPtr& input, const int meas_length){
 
     this->input_data_ = input->data;
-    this->measurement_count_ = this->input_data_.size()/meas_length;
-    this->parseInput(meas_length);
+    this->measurement_length_ = meas_length;
+    this->measurement_count_ = this->input_data_.size()/this->measurement_length_;
+    this->parseInput();
     this->initVisualization();
 
 };
+
+Eigen::MatrixXd MeasurementSet::getParsedOutput(){
+
+    return this->parsed_output_;
+
+}
 
 int MeasurementSet::getMeasurementCount(){
 
@@ -21,18 +28,18 @@ visualization_msgs::Marker MeasurementSet::getMeasPlotter(){
 
 }
 
-void MeasurementSet::parseInput(const int meas_length){
+void MeasurementSet::parseInput(){
 
     Eigen::VectorXd tmp_vec = Eigen::Map<Eigen::VectorXf, Eigen::Unaligned>
     (this->input_data_.data(), this->input_data_.size()).cast<double>();
 
     Eigen::MatrixXd tmp_matrix = Eigen::Map<Eigen::MatrixXd>
-    (tmp_vec.data(), this->measurement_count_, meas_length).transpose();
+    (tmp_vec.data(), this->measurement_count_, this->measurement_length_).transpose();
 
     this->parsed_output_ = tmp_matrix.block(3, 0, 4, this->measurement_count_);
     this->timestamp_ = tmp_matrix.block(10, 0, 4, 1);
 
-    std::cout << this->parsed_output_ << std::endl << std::endl;
+    // std::cout << this->parsed_output_ << std::endl << std::endl;
 }
 
 void MeasurementSet::initVisualization(){

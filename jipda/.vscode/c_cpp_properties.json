@@ -7,7 +7,7 @@
       },
       "includePath": [
         "/opt/ros/noetic/include/**",
-        "/home/ali/ros_ws/src/jipda/include/**",
+        "/home/ali/ros_ws/src/jipda_ros/jipda/include/**",
         "/usr/include/**"
       ],
       "name": "ROS",

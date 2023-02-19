@@ -3,6 +3,7 @@ project(jipda)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
+add_compile_options(-O0)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -123,6 +124,8 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
+  include/jipda/ConstantVelocityTracker.h
+  include/jipda/ConstantVelocityTracker.cpp
   include/jipda/MeasurementSet.h
   include/jipda/MeasurementSet.cpp
   include/jipda/JipdaNode.h

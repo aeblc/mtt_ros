@@ -17,17 +17,14 @@ public:
     Eigen::VectorXd getTimestamp();
     visualization_msgs::Marker getMeasPlotter();
 
-    // Parser to get positions, velocities and timestamps
-    void parseInput(const int); 
 
-    // initialize visualization objects
-    void initVisualization();
 
 
 private:
 
     // Parsed and unparsed measurements
     int measurement_count_;
+    int measurement_length_;
     std::vector<float> input_data_;
     Eigen::MatrixXd parsed_output_;
 
@@ -36,5 +33,13 @@ private:
 
     // Rviz Plotter
     visualization_msgs::Marker meas_plotter_;
+
+    // Helper functions
+
+    // Parser to get positions, velocities and timestamps
+    void parseInput(); 
+
+    // initialize visualization objects
+    void initVisualization();
 
 };

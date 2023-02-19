@@ -4,18 +4,9 @@
       {
           "name": "ROS: Launch my file",
           "request": "launch",
-          "target": "/home/ali/ros_ws/src/jipda/launch/rviz.launch",
+          "target": "/home/ali/ros_ws/src/jipda_ros/jipda/launch/rviz.launch",
           "launch": ["rviz", "gz", "gzserver", "gzclient"],
           "type": "ros",
-          "MIMode": "gdb",
-          "miDebuggerPath": "/usr/bin/gdb",
-          "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            }
-        ]
       }
     ]
 }  
