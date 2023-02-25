@@ -34,7 +34,7 @@ visualization_msgs::Marker ConstantVelocityTracker::getCovMarker(){
 
 bool ConstantVelocityTracker::isConfirmed(){
 
-    if(this->track_existence_probabilities_(0) > 0.5)
+    if(this->track_existence_probabilities_(0) > 0.25)
         return true;
     else
         return false;
@@ -43,7 +43,7 @@ bool ConstantVelocityTracker::isConfirmed(){
 
 bool ConstantVelocityTracker::isValid(){
 
-    if(this->track_existence_probabilities_(0) > 0.1)
+    if(this->track_existence_probabilities_(0) > 0.05)
         return true;
     else
         return false;
@@ -182,11 +182,11 @@ Eigen::MatrixXd ConstantVelocityTracker::getAccelerationMatrix(double timestep){
 
 
 std::tuple<Eigen::VectorXd, Eigen::MatrixXd> ConstantVelocityTracker::
-    getPredictedMeasStats(double T){
+    getPredictedMeasStats(double timestep){
     
     // get transition and acceleration matrices
-    auto tran_mat = this->getTransitionMatrix(T);
-    auto accel_mat = this->getAccelerationMatrix(T);
+    auto tran_mat = this->getTransitionMatrix(timestep);
+    auto accel_mat = this->getAccelerationMatrix(timestep);
 
     // compute predicted mean and covariance
     auto pred_mean = tran_mat*this->state_mean_;

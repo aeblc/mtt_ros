@@ -5,21 +5,21 @@
 GnnNode::GnnNode() {
 
    // Gather parameters from the launch file
-   this->n_.getParam("/gnn_node/subs_topic", this->subs_topic_);
-   this->n_.getParam("/gnn_node/rate", this->rate_);
-   this->n_.getParam("/gnn_node/input_length", this->input_length_);
-   this->n_.getParam("/gnn_node/proc_var", this->process_variance_);
-   this->n_.getParam("/gnn_node/meas_var", this->measurement_variance_);
-   this->n_.getParam("/gnn_node/detect_prob", this->detect_prob_);
-   this->n_.getParam("/gnn_node/gate_threshold", this->gate_threshold_);
+   this->n_.getParam("/gnn_tracker_node/subs_topic", this->subs_topic_);
+   this->n_.getParam("/gnn_tracker_node/rate", this->rate_);
+   this->n_.getParam("/gnn_tracker_node/input_length", this->input_length_);
+   this->n_.getParam("/gnn_tracker_node/proc_var", this->process_variance_);
+   this->n_.getParam("/gnn_tracker_node/meas_var", this->measurement_variance_);
+   this->n_.getParam("/gnn_tracker_node/detect_prob", this->detect_prob_);
+   this->n_.getParam("/gnn_tracker_node/gate_threshold", this->gate_threshold_);
 
    ROS_INFO("My node is alive!!");
 
    // Initialize subscribers and publishers
-   this->subs_ = this->n_.subscribe(this->subs_topic_, 10, &GnnNode::subCallback_, this);
-   this->meas_marker_pub_ = this->n_.advertise<visualization_msgs::Marker>("/gnn/measurements", 10, this);
-   this->state_marker_pub_ = this->n_.advertise<visualization_msgs::Marker>("/gnn/estimated_state", 10, this);
-   this->cov_marker_pub_ = this->n_.advertise<visualization_msgs::Marker>("/gnn/innovation_cov", 10, this);
+   this->subs_ = this->n_.subscribe(this->subs_topic_, 50, &GnnNode::subCallback_, this);
+   this->meas_marker_pub_ = this->n_.advertise<visualization_msgs::Marker>("/gnn_tracker/measurements", this->rate_, this);
+   this->state_marker_pub_ = this->n_.advertise<visualization_msgs::Marker>("/gnn_tracker/estimated_state", this->rate_, this);
+   this->cov_marker_pub_ = this->n_.advertise<visualization_msgs::Marker>("/gnn_trracker/innovation_cov", this->rate_, this);
 
    this->last_processed_meas_ = 0;
 
@@ -36,7 +36,6 @@ void GnnNode::spin()
 
 
       if (!this->all_measurements_.empty()){
-         rate.sleep();
          this->meas_marker_pub_.publish(this->all_measurements_[this->last_processed_meas_].getMeasPlotter());
 
          if (this->all_measurements_.size() > this->last_processed_meas_ )

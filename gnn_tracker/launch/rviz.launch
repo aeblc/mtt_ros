@@ -4,14 +4,14 @@
         <!-- General parameters -->
         <param name="subs_topic" type="string" value="lrrObjects" />
         <param name="marker_pub_topic" type="string" value="meas_markers" />
-        <param name="rate" type="int" value="10" />
+        <param name="rate" type="int" value="50" />
         <param name="input_length" type="int" value="14" />
 
         <!--  Algorithm params -->
-        <param name="proc_var" type="double" value="5.0" />
-        <param name="meas_var" type="double" value="1.0" />
+        <param name="proc_var" type="double" value="15.0" />
+        <param name="meas_var" type="double" value="3.0" />
         <param name="detect_prob" type="double" value="0.95" />
-        <param name="gate_threshold" type="double" value="3" />
+        <param name="gate_threshold" type="double" value="1" />
         
     </node>
      <!--  -->

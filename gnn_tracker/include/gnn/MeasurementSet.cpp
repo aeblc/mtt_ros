@@ -49,7 +49,11 @@ void MeasurementSet::parseInput_(){
     // Remove possible duplicate measurements
     Eigen::MatrixXd tentative_meas = tmp_matrix.block(3, 0, 4, this->measurement_count_);
     std::vector<int> valid_indices;
-    for(int i=0; i<tentative_meas.rows()-1; ++i){
+    
+    // always begin picking the first measurement
+    valid_indices.push_back(0);
+    if(this->measurement_count_ > 1)
+    for(int i=1; i<tentative_meas.rows()-1; ++i){
         bool flag = true;
         for(int j=i+1; j<tentative_meas.cols(); ++j){
 
