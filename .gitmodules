@@ -1,0 +1,3 @@
+[submodule "gnn_tracker/lib/munkres-cpp"]
+	path = gnn_tracker/lib/munkres-cpp
+	url = https://gitlab.com/Gluttton/munkres-cpp
