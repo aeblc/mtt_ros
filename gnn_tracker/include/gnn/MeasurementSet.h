@@ -24,7 +24,7 @@ private:
 
     // Parsed and unparsed measurements
     int measurement_count_;
-    int measurement_length_;
+    int input_length_;
     std::vector<float> input_data_;
     Eigen::MatrixXd parsed_output_;
 
@@ -37,9 +37,9 @@ private:
     // Helper functions
 
     // Parser to get positions, velocities and timestamps
-    void parseInput(); 
+    void parseInput_(); 
 
     // initialize visualization objects
-    void initVisualization();
+    void initVisualization_();
 
 };

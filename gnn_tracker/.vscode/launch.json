@@ -4,7 +4,7 @@
       {
           "name": "ROS: Launch my file",
           "request": "launch",
-          "target": "/home/ali/ros_ws/src/mtt_ros/gnn/launch/rviz.launch",
+          "target": "/home/ali/ros_ws/src/mtt_ros/gnn_tracker/launch/rviz.launch",
           "launch": ["rviz", "gz", "gzserver", "gzclient"],
           "type": "ros",
       }

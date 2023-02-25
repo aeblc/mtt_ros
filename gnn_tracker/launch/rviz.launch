@@ -1,5 +1,5 @@
 <launch>
-    <node pkg="gnn" type="gnn_node" name="gnn_node" output="screen">
+    <node pkg="gnn_tracker" type="gnn_tracker_node" name="gnn_tracker_node" output="screen">
         
         <!-- General parameters -->
         <param name="subs_topic" type="string" value="lrrObjects" />
@@ -15,5 +15,5 @@
         
     </node>
      <!--  -->
-    <node type="rviz" name="rviz" pkg="rviz" args="-d ~/ros_ws/src/gnn_ros/gnn/rviz/markers.rviz" />
+    <node type="rviz" name="rviz" pkg="rviz" args="-d ~/ros_ws/src/mtt_ros/gnn_tracker/rviz/markers.rviz" />
 </launch>
