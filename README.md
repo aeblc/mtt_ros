@@ -1,2 +1,2 @@
-# jipda_ros
-ROS implementation of JIPDA multi target tracker.
+# mtt_ros
+ROS implementations of several multi target tracker algorithms.
